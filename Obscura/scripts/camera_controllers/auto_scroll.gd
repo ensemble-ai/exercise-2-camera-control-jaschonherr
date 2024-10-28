@@ -21,31 +21,34 @@ func _process(delta: float) -> void:
 	
 	global_position += autoscroll_speed
 
+	var tpos:Vector3 = target.global_position
+	var cpos:Vector3 = global_position
+	
 	var box_width:float =  abs(top_left.x - bottom_right.x)
 	var box_height:float =  abs(top_left.y - bottom_right.y)
+	var left_edge:float = cpos.x - box_width / 2.0
+	var right_edge:float = cpos.x + box_width / 2.0
+	var top_edge:float = cpos.z - box_height / 2.0
+	var bottom_edge:float = cpos.z + box_width / 2.0
 	
-	var tpos = target.global_position
-	var cpos = global_position
-	
-	#boundary checks
+	#boundary checks, never let the vessel out of the camera's bounding box
 	#left
-	var diff_between_left_edges = (tpos.x - target.WIDTH / 2.0) - (cpos.x - box_width / 2.0)
+	var diff_between_left_edges = (tpos.x - target.WIDTH / 2.0) - left_edge
 	if diff_between_left_edges < 0:
-		target.global_position.x = cpos.x - box_width / 2.0 + target.WIDTH / 2.0
+		target.global_position.x = left_edge + target.WIDTH / 2.0
 	#right
-	var diff_between_right_edges = (tpos.x + target.WIDTH / 2.0) - (cpos.x + box_width / 2.0)
+	var diff_between_right_edges = (tpos.x + target.WIDTH / 2.0) - right_edge
 	if diff_between_right_edges > 0:
-		target.global_position.x = cpos.x + box_width / 2.0 - target.WIDTH / 2.0
+		target.global_position.x = right_edge - target.WIDTH / 2.0
 	#top
-	var diff_between_top_edges = (tpos.z - target.HEIGHT / 2.0) - (cpos.z - box_height / 2.0)
+	var diff_between_top_edges = (tpos.z - target.HEIGHT / 2.0) - top_edge
 	if diff_between_top_edges < 0:
-		target.global_position.z = cpos.z - box_height / 2.0 + target.HEIGHT / 2.0
+		target.global_position.z = top_edge + target.HEIGHT / 2.0
 	#bottom
-	var diff_between_bottom_edges = (tpos.z + target.HEIGHT / 2.0) - (cpos.z + box_height / 2.0)
+	var diff_between_bottom_edges = (tpos.z + target.HEIGHT / 2.0) - bottom_edge
 	if diff_between_bottom_edges > 0:
-		target.global_position.z = cpos.z + box_height / 2.0 - target.HEIGHT / 2.0
+		target.global_position.z = bottom_edge - target.HEIGHT / 2.0
 
-	#right
 	super(delta)
 
 
