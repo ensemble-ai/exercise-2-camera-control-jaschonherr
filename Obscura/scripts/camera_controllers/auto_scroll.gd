@@ -21,6 +21,30 @@ func _process(delta: float) -> void:
 	
 	global_position += autoscroll_speed
 
+	var box_width:float =  abs(top_left.x - bottom_right.x)
+	var box_height:float =  abs(top_left.y - bottom_right.y)
+	
+	var tpos = target.global_position
+	var cpos = global_position
+	
+	#boundary checks
+	#left
+	var diff_between_left_edges = (tpos.x - target.WIDTH / 2.0) - (cpos.x - box_width / 2.0)
+	if diff_between_left_edges < 0:
+		target.global_position.x = cpos.x - box_width / 2.0 + target.WIDTH / 2.0
+	#right
+	var diff_between_right_edges = (tpos.x + target.WIDTH / 2.0) - (cpos.x + box_width / 2.0)
+	if diff_between_right_edges > 0:
+		target.global_position.x = cpos.x + box_width / 2.0 - target.WIDTH / 2.0
+	#top
+	var diff_between_top_edges = (tpos.z - target.HEIGHT / 2.0) - (cpos.z - box_height / 2.0)
+	if diff_between_top_edges < 0:
+		target.global_position.z = cpos.z - box_height / 2.0 + target.HEIGHT / 2.0
+	#bottom
+	var diff_between_bottom_edges = (tpos.z + target.HEIGHT / 2.0) - (cpos.z + box_height / 2.0)
+	if diff_between_bottom_edges > 0:
+		target.global_position.z = cpos.z + box_height / 2.0 - target.HEIGHT / 2.0
+
 	#right
 	super(delta)
 
