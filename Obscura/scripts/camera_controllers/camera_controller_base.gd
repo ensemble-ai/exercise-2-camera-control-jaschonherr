@@ -45,3 +45,7 @@ func _process(delta: float) -> void:
 
 func draw_logic() -> void:
 	pass
+	
+
+func center_on_target():
+	position = target.position
