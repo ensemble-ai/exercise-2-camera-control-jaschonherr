@@ -4,9 +4,11 @@ extends CameraControllerBase
 const STUTTER_BUFFER = 0.01
 
 @export var lead_speed:float = 5
-@export var catchup_delay_duration:float  = 0.5
+@export var catchup_delay_duration:float  = 0.05
 @export var catchup_speed:float = 5
 @export var leash_distance:float = 5
+
+var _timer
 
 func _ready() -> void:
 	super()
@@ -23,18 +25,32 @@ func _process(delta: float) -> void:
 	var cpos_vec2:Vector2 = Vector2(global_position.x, global_position.z)
 	var tpos_vec2:Vector2 = Vector2(target.global_position.x, target.global_position.z)
 	var dist:float = cpos_vec2.distance_to(tpos_vec2)
-
+	# only start lerping when there is a nonzero distance between camera and vessel
 	if dist != 0:
+		# lerp away from target while target is moving
 		if target.velocity != Vector3(0, 0, 0):
+			# get rid of the catchup delay timer if it exists
+			if _timer != null:
+				_timer.queue_free()
+			# lerp towards a position leash distance away in vessel velocity direction				
 			var look_ahead_pos = target.global_position + target.velocity.normalized() * leash_distance
 			cpos_vec2 = cpos_vec2.lerp(Vector2(look_ahead_pos.x, look_ahead_pos.z), lead_speed * delta)
 			global_position.x = target.velocity.x * delta + cpos_vec2.x
 			global_position.z = target.velocity.z * delta + cpos_vec2.y
+		# lerp towards target while target is not moving
 		else:
-			cpos_vec2 = cpos_vec2.lerp(tpos_vec2, catchup_speed * delta)
-			global_position.x = cpos_vec2.x
-			global_position.z = cpos_vec2.y
-		
+			# start a new timer once the vessel has stopped moving
+			if _timer == null:
+				_timer = Timer.new()
+				add_child(_timer)
+				_timer.one_shot = true
+				_timer.start(catchup_delay_duration)
+			# once the timer runs out, start the catchup lerp
+			if _timer.is_stopped():
+				cpos_vec2 = cpos_vec2.lerp(tpos_vec2, catchup_speed * delta)
+				global_position.x = cpos_vec2.x
+				global_position.z = cpos_vec2.y
+	#if the camera is close enough to the vessel, set their positions equal		
 	if dist < STUTTER_BUFFER and target.velocity == Vector3(0, 0, 0):
 		global_position.x = target.global_position.x	
 		global_position.z = target.global_position.z	

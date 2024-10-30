@@ -22,18 +22,21 @@ func _process(delta: float) -> void:
 	var cpos_vec2:Vector2 = Vector2(global_position.x, global_position.z)
 	var tpos_vec2:Vector2 = Vector2(target.global_position.x, target.global_position.z)
 	var dist:float = cpos_vec2.distance_to(tpos_vec2)
-
+	# only start lerping when there is a nonzero distance between camera and vessel
 	if dist != 0:
+		# lerp away from target while target is moving
 		if target.velocity != Vector3(0, 0, 0):
+			# lerp towards a position leash distance away in negative vessel velocity direction
 			var new_pos = target.global_position + -1 * target.velocity.normalized() * leash_distance
 			cpos_vec2 = cpos_vec2.lerp(Vector2(new_pos.x, new_pos.z), follow_speed * delta)
 			global_position.x = target.velocity.x * delta + cpos_vec2.x
 			global_position.z = target.velocity.z * delta + cpos_vec2.y
+		# lerp towards from target while target is not moving
 		else:
 			cpos_vec2 = cpos_vec2.lerp(tpos_vec2, catchup_speed * delta)
 			global_position.x = cpos_vec2.x
 			global_position.z = cpos_vec2.y
-		
+	#if the camera is close enough to the vessel, set their positions equal
 	if dist < STUTTER_BUFFER and target.velocity == Vector3(0, 0, 0):
 		global_position.x = target.global_position.x	
 		global_position.z = target.global_position.z	

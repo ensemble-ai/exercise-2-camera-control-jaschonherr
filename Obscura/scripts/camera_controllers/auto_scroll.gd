@@ -20,6 +20,7 @@ func _process(delta: float) -> void:
 		draw_logic()
 	
 	global_position += autoscroll_speed
+	target.global_position += autoscroll_speed
 
 	var tpos:Vector3 = target.global_position
 	var cpos:Vector3 = global_position
