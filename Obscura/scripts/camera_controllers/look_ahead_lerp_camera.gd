@@ -1,15 +1,16 @@
-class_name PositionLockLerp
+class_name LookAheadLerp
 extends CameraControllerBase
 
 const STUTTER_BUFFER = 0.01
 
-@export var follow_speed:float = 1
+@export var lead_speed:float = target.BASE_SPEED * 1.5
+@export var catchup_delay_duration:float  = 0.5
 @export var catchup_speed:float = 5
-@export var leash_distance:float = 7
+@export var leash_distance:float = 5
 
 func _ready() -> void:
 	super()
-	position = target.position
+	position = target.position - Vector3(10,0,0)
 	
 
 func _process(delta: float) -> void:
@@ -28,10 +29,13 @@ func _process(delta: float) -> void:
 	if dist != 0:
 		if target.velocity != Vector3(0,0,0):
 			if dist < leash_distance:
-				cpos_vec2 = cpos_vec2.lerp(tpos_vec2, follow_speed * delta)
+				print("<")
+				var look_ahead_pos = target.global_position + target.velocity.normalized() * leash_distance
+				cpos_vec2 = cpos_vec2.lerp(Vector2(look_ahead_pos.x, look_ahead_pos.z), 5 * delta)
 				global_position.x = cpos_vec2.x
 				global_position.z = cpos_vec2.y
 			else:
+				print(">")
 				var diff_vector = Vector3(x_diff, 0, z_diff)
 				global_position.x = target.global_position.x - diff_vector.normalized().x * leash_distance
 				global_position.z = target.global_position.z - diff_vector.normalized().z * leash_distance
@@ -40,8 +44,9 @@ func _process(delta: float) -> void:
 		
 	if dist < STUTTER_BUFFER and target.velocity == Vector3(0, 0, 0):
 		global_position = target.global_position
-	
+		
 	super(delta)
+	
 	
 func draw_logic() -> void:
 	var mesh_instance := MeshInstance3D.new()
