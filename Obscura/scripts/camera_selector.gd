@@ -1,6 +1,7 @@
 extends Node
 
 @export var cameras:Array[CameraControllerBase]
+@export var hud:CanvasLayer
 
 var current_controller:int = 0
 
@@ -25,6 +26,7 @@ func _process(_delta):
 				if index == current_controller:
 					cameras[current_controller].make_current()
 					cameras[current_controller].center_on_target()
+					hud.label.text = cameras[current_controller].title
 				else:
 					cameras[index].current = false
 					cameras[index].draw_camera_logic = true

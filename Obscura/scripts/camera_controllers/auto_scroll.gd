@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 	
 	if draw_camera_logic:
 		draw_logic()
-	
+	#scroll the camera and player together
 	global_position += autoscroll_speed
 	target.global_position += autoscroll_speed
 
@@ -30,7 +30,7 @@ func _process(delta: float) -> void:
 	var top_edge:float = cpos.z + top_left.y
 	var bottom_edge:float = cpos.z + bottom_right.y
 	
-	#outer push box
+	#bounds for outer push box
 	#left
 	var diff_between_left_edges = (tpos.x - target.WIDTH / 2.0) - left_edge
 	if diff_between_left_edges < 0:

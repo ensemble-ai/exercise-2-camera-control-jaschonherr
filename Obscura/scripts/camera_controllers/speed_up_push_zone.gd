@@ -2,10 +2,10 @@ class_name SpeedUpPushZone
 extends CameraControllerBase
 
 @export var push_ratio:float = 0.5
-@export var pushbox_top_left:Vector2 = Vector2(-7, -7)
-@export var pushbox_bottom_right:Vector2 = Vector2(7, 7)
-@export var speedup_zone_top_left:Vector2 = Vector2(-4, -4)
-@export var speedup_zone_bottom_right:Vector2 = Vector2(4, 4)
+@export var pushbox_top_left:Vector2 = Vector2(-6, -6)
+@export var pushbox_bottom_right:Vector2 = Vector2(6, 6)
+@export var speedup_zone_top_left:Vector2 = Vector2(-3, -3)
+@export var speedup_zone_bottom_right:Vector2 = Vector2(3, 3)
 
 func _ready() -> void:
 	super()
@@ -101,16 +101,19 @@ func draw_logic() -> void:
 	#mesh is freed after one update of _process
 	await get_tree().process_frame
 	mesh_instance.queue_free()
-
 	
+#called when vessel is in the top left corner
 func _top_left(diff_between_top_edges:float, diff_between_left_edges:float, delta:float):
+	#touching left edge, move at target speed in x dir
 	if diff_between_left_edges < 0:
 		global_position.x += diff_between_left_edges
+	#not touching left edge, move at push ratio * target speed in x dir
 	else:
-		global_position.x += target.velocity.x * delta * push_ratio
-		
+		global_position.x += target.velocity.x * delta * push_ratio		
+	#touching top edge, move at target speed in z dir
 	if diff_between_top_edges < 0:
 		global_position.z += diff_between_top_edges
+	#not touching top edge, move at push ratio * target speed in z dir
 	else:
 		global_position.z += target.velocity.z * delta * push_ratio
 		
@@ -152,10 +155,13 @@ func _bottom_right(diff_between_bottom_edges:float, diff_between_right_edges:flo
 		
 		
 func _left(diff_between_left_edges:float, delta:float):
+	#touching left edge, move at target speed in x dir
 	if diff_between_left_edges < 0:
 		global_position.x += diff_between_left_edges
+	#only move in x dir when not touching edge if moving towards edge
 	elif target.velocity.x < 0:
 		global_position.x += target.velocity.x * delta * push_ratio
+	#always move at push ratio * target speed in z
 	global_position.z += target.velocity.z * delta * push_ratio
 	
 

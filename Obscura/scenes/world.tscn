@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=4 uid="uid://88du8yjefx8j"]
+[gd_scene load_steps=17 format=4 uid="uid://88du8yjefx8j"]
 
 [ext_resource type="PackedScene" uid="uid://dtm13sp1jsrwi" path="res://scenes/vessel.tscn" id="1_oaql3"]
 [ext_resource type="Script" path="res://scripts/camera_selector.gd" id="2_qffo5"]
 [ext_resource type="Script" path="res://scripts/debug_camera.gd" id="3_4fllx"]
+[ext_resource type="Script" path="res://scripts/hud.gd" id="3_6slex"]
 [ext_resource type="PackedScene" uid="uid://bu80st6dhcnla" path="res://scenes/controlled_camera.tscn" id="3_ttnp6"]
 [ext_resource type="PackedScene" uid="uid://kafb18nsdh54" path="res://scenes/terrain_manager.tscn" id="4_josyl"]
 [ext_resource type="Script" path="res://scripts/camera_controllers/position_lock.gd" id="5_6bgar"]
@@ -11,6 +12,7 @@
 [ext_resource type="Script" path="res://scripts/camera_controllers/position_lock_lerp.gd" id="7_u6xxy"]
 [ext_resource type="Script" path="res://scripts/camera_controllers/look_ahead_lerp.gd" id="8_qfppc"]
 [ext_resource type="Script" path="res://scripts/camera_controllers/speed_up_push_zone.gd" id="9_y5d8k"]
+[ext_resource type="FontFile" uid="uid://bv888pq1rbb3a" path="res://assets/PixelOperator8.ttf" id="12_nqma5"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_51hhd"]
 _surfaces = [{
@@ -44,13 +46,27 @@ motion_mode = 1
 terrforming_power = 0.1
 terrain_manager = NodePath("../TerrainManager")
 
-[node name="CameraSelector" type="Node" parent="." node_paths=PackedStringArray("cameras")]
+[node name="CameraSelector" type="Node" parent="." node_paths=PackedStringArray("cameras", "hud")]
 script = ExtResource("2_qffo5")
-cameras = [NodePath("SpeedUpPushZoneCamera"), NodePath("PushBoxCamera"), NodePath("PositionLockCamera"), NodePath("AutoScrollCamera"), NodePath("PositionLockLerpCamera"), NodePath("LookAheadLerpCamera")]
+cameras = [NodePath("PushBoxCamera"), NodePath("PositionLockCamera"), NodePath("AutoScrollCamera"), NodePath("PositionLockLerpCamera"), NodePath("LookAheadLerpCamera"), NodePath("SpeedUpPushZoneCamera")]
+hud = NodePath("HUD")
+
+[node name="HUD" type="CanvasLayer" parent="CameraSelector"]
+script = ExtResource("3_6slex")
+
+[node name="Label" type="Label" parent="CameraSelector/HUD"]
+offset_left = 19.0
+offset_top = 673.0
+offset_right = 169.0
+offset_bottom = 740.0
+theme_override_fonts/font = ExtResource("12_nqma5")
+theme_override_font_sizes/font_size = 24
+text = "Pushbox"
 
 [node name="PushBoxCamera" parent="CameraSelector" node_paths=PackedStringArray("target") instance=ExtResource("3_ttnp6")]
 transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 30, 0)
 target = NodePath("../../Vessel")
+title = "Pushbox"
 
 [node name="debug" type="Label" parent="CameraSelector/PushBoxCamera"]
 visible = false
@@ -62,27 +78,32 @@ script = ExtResource("3_4fllx")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 script = ExtResource("5_6bgar")
 target = NodePath("../../Vessel")
+title = "Position Lock"
 
 [node name="AutoScrollCamera" type="Camera3D" parent="CameraSelector" node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 script = ExtResource("6_x8sfo")
 autoscroll_speed = Vector3(0.3, 0, 0)
 target = NodePath("../../Vessel")
+title = "Autoscroll"
 
 [node name="PositionLockLerpCamera" type="Camera3D" parent="CameraSelector" node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 script = ExtResource("7_u6xxy")
 target = NodePath("../../Vessel")
+title = "Position Lock Lerp"
 
 [node name="LookAheadLerpCamera" type="Camera3D" parent="CameraSelector" node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 script = ExtResource("8_qfppc")
 target = NodePath("../../Vessel")
+title = "Look-Ahead Lerp"
 
 [node name="SpeedUpPushZoneCamera" type="Camera3D" parent="CameraSelector" node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 script = ExtResource("9_y5d8k")
 target = NodePath("../../Vessel")
+title = "4-Way Speedup Push Zone"
 
 [node name="PushBoxCamera2" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_ttnp6")]
 transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 30, 0)
