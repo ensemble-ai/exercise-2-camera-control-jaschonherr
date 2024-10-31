@@ -1,3 +1,3 @@
 extends CanvasLayer
 
-@onready var label:Label = $Label
+@export var camera_label:Label

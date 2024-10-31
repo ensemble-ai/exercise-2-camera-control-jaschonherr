@@ -8,7 +8,7 @@ extends Camera3D
 @export var min_zoom:float = 5.0
 @export var max_zoom:float = 100.0
 @export var draw_camera_logic:bool = true
-@export var title:String
+@export var text:String
 
 #camera tilt around the z axis in radians
 #var _camera_tilt_rad:float = 0.0

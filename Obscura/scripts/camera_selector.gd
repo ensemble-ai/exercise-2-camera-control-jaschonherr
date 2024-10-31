@@ -12,6 +12,8 @@ func _ready():
 			camera.current = false
 	if(len(cameras) > current_controller+1):
 		cameras[current_controller].make_current()
+		cameras[current_controller].center_on_target()
+		hud.camera_label.text = cameras[current_controller].text
 
 
 func _process(_delta):
@@ -26,7 +28,7 @@ func _process(_delta):
 				if index == current_controller:
 					cameras[current_controller].make_current()
 					cameras[current_controller].center_on_target()
-					hud.label.text = cameras[current_controller].title
+					hud.camera_label.text = cameras[current_controller].text
 				else:
 					cameras[index].current = false
 					cameras[index].draw_camera_logic = true
