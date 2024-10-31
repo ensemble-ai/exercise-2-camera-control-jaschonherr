@@ -24,15 +24,13 @@ func _process(delta: float) -> void:
 
 	var tpos:Vector3 = target.global_position
 	var cpos:Vector3 = global_position
+
+	var left_edge:float = cpos.x + top_left.x
+	var right_edge:float = cpos.x + bottom_right.x
+	var top_edge:float = cpos.z + top_left.y
+	var bottom_edge:float = cpos.z + bottom_right.y
 	
-	var box_width:float =  abs(top_left.x - bottom_right.x)
-	var box_height:float =  abs(top_left.y - bottom_right.y)
-	var left_edge:float = cpos.x - box_width / 2.0
-	var right_edge:float = cpos.x + box_width / 2.0
-	var top_edge:float = cpos.z - box_height / 2.0
-	var bottom_edge:float = cpos.z + box_width / 2.0
-	
-	#boundary checks, never let the vessel out of the camera's bounding box
+	#outer push box
 	#left
 	var diff_between_left_edges = (tpos.x - target.WIDTH / 2.0) - left_edge
 	if diff_between_left_edges < 0:
