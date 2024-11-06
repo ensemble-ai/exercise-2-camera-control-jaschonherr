@@ -102,28 +102,15 @@ The 4-way speedup push zone camera has been fully implemented with no noticable 
 
 ## Code Style ##
 
-### Description ###
-Check the scripts to see if the student code follows the Godot style guide.
-
-If sections don't adhere to the style guide, please permalink the line of code from GitHub and justify why the line of code has infractions of the style guide.
-
-It should look something like this:
-
-* [description of infraction](https://github.com/dr-jam/ECS189L) - this is the justification.
-
-Here is an example of the permalink drop-down on GitHub.
-
-![Permalink option](../images/permalink_example.png)
-
-Here is another example as well.
-
-* [I go to Github and look at the ICommand script in the ECS189L repo!](https://github.com/dr-jam/ECS189L/blob/1618376092e85ffd63d3af9d9dcc1f2078df2170/Projects/CommandPatternExample/Assets/Scripts/ICommand.cs#L5)
-
 ### Code Style Review ###
+
+Overall, the student has shown great effort in following the GDScript code style guidelines in their project. Only minimal flaws are present such as having slightly longer line lengths than considered ideal. 
 
 #### Style Guide Infractions ####
 
-* Line length - Some lines within the code [like the one linked here](https://github.com/ensemble-ai/exercise-2-camera-control-jaschonherr/blob/007024ead157d3f934a9d8134b9c25f4cfe0477b/Obscura/scripts/camera_controllers/look_ahead_lerp.gd#L84) exceed the recommended 100 characters limit for ease of readability. 
+* Line length - Some lines within the code [like the one linked here](https://github.com/ensemble-ai/exercise-2-camera-control-jaschonherr/blob/007024ead157d3f934a9d8134b9c25f4cfe0477b/Obscura/scripts/camera_controllers/look_ahead_lerp.gd#L84) exceed the recommended 100 characters limit for ease of readability.
+
+* For long conditional if statments [like these](https://github.com/ensemble-ai/exercise-2-camera-control-jaschonherr/blob/06e9662b4b5704a7cfed0b73c78b96b5a085776e/Obscura/scripts/camera_controllers/look_ahead_lerp.gd#L54), I would suggest surrounding the statement in parantheses for ease of reading.
 
 #### Style Guide Exemplars ####
 
@@ -136,16 +123,6 @@ Here is another example as well.
 * Correct declaration and naming for virtual function [_timer](https://github.com/ensemble-ai/exercise-2-camera-control-jaschonherr/blob/06e9662b4b5704a7cfed0b73c78b96b5a085776e/Obscura/scripts/camera_controllers/look_ahead_lerp.gd#L11)
 
 ## Best Practices ##
-
-### Description ###
-
-If the student has followed best practices as seen in the style guide lecture, then feel free to point at these segments of code as examples. 
-
-If the student has breached the best practices and has done something that should be noted, please add the infracture.
-
-This should be similar to the Code Style justification.
-
-* [description of infraction](https://github.com/dr-jam/ECS189L) - this is the justification.
 
 ### Best Practices Review ###
 
