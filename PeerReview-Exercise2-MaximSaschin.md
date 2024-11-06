@@ -104,7 +104,7 @@ The 4-way speedup push zone camera has been fully implemented with no noticable 
 
 ### Code Style Review ###
 
-Overall, the student has shown great effort in following the GDScript code style guidelines in their project. Only minimal flaws are present such as having slightly longer line lengths than considered ideal. 
+Overall, the student has shown great effort in following the GDScript code style guidelines in their project. Only minimal flaws are present such as having slightly longer line lengths than considered ideal or having inconsistent/unclear 'if' statements. 
 
 #### Style Guide Infractions ####
 
