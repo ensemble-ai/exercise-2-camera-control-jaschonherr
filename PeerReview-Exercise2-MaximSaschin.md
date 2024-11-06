@@ -65,7 +65,7 @@ The position lock camera works fully as expected. The camera locks onto the vess
 - [ ] Unsatisfactory
 
 #### Justification ##### 
-The autoscrolling camera works mostly as expected, however I have noticed a potential major and minor flaw. Major flaw: The camera is moving the frame to the right while also moving the vessel to the right. As stated in the project description: "If the player is lagging behind and is touching the left edge of the box, the player should be pushed forward by that box edge." This means that the player should have to move in the rightward direction in order to stay ahead or keep up with the camera frame. The current implementation on the other hand, pushes the entire vessel, never allowing it to lag behind or require the pushing of the vessel. In essence, the vessel should not be moved in the right or left direction unless the user inputs that direction. Otherwise, the vessel should stay in its place while the frame moves to the right. Minor flaw: When pressing 'f' input to remove the outline border of the frame, the entire speed of the frame (camera) and vessel seems to increase to a super high velocity with the camera moving quickly in the rightward direction.
+The autoscrolling camera works mostly as expected, however I have noticed a potential major and minor flaw. Major flaw: The camera is moving the frame to the right while also moving the vessel to the right. As stated in the project description: "If the player is lagging behind and is touching the left edge of the box, the player should be pushed forward by that box edge." This means that the player should have to move in the rightward direction in order to stay ahead or keep up with the camera frame. The current implementation on the other hand, pushes the entire vessel, never allowing it to lag behind or require the pushing of the vessel. In essence, the vessel should not be moved in the right or left direction unless the user inputs that direction. Otherwise, the vessel should stay in its place while the frame moves to the right. Minor flaw: When pressing 'f' input to remove the outline drawing of the frame, the entire speed of the frame (camera) and vessel seems to increase to a super high velocity with the camera moving quickly in the rightward direction.
 
 ### Stage 3 ###
 
@@ -76,7 +76,7 @@ The autoscrolling camera works mostly as expected, however I have noticed a pote
 - [ ] Unsatisfactory
 
 #### justification ##### 
-The position lock and lerp smoothing camera works entirely as expected. The player is able to move the vessel in a direction, ahead of the camera, and the camera catches up to the vessel at a smooth and consistent rate, not allowing the vessel to move out of the leash range. The student also correctly implemented a cross at the center of the screen to indicate that the camera is moving behind (slower) than the player/vessel. 
+The position lock and lerp smoothing camera works entirely as expected. The player is able to move the vessel in a direction, ahead of the camera, and the camera catches up to the vessel at a smooth and consistent rate, not allowing the camera to lag too far behind (within leash range). The student also correctly implemented a cross at the center of the screen to indicate that the camera is moving behind (slower) than the player/vessel. 
 
 ### Stage 4 ###
 
@@ -98,7 +98,7 @@ The lerp smoothing target focus (ahead) camera works entirely as expected. The p
 - [ ] Unsatisfactory
 
 #### justification ##### 
-The 4-way speedup push zone camera has been fully implemented with no noticable flaws. The player can move freely within the inner box without the camera moving, when in between the inner and outer frame the speed ratio is applied to the camera logic to slightly move the camera in the direction the player is heading, and then the outermost frame (box) acts as a barrier so that the entire frame (with camera) is pushed when the player is traveling in that direction against the frame. In addition, the student has properly drawn the frames of both of these boxes to indiate where the barrier and zones are located in relation to the vessel. 
+The 4-way speedup push zone camera has been correctly implemented with no noticable flaws. The player can move freely within the inner box without the camera moving, when in between the inner and outer frame the speed ratio is applied to the camera logic to slightly move the camera in the direction the player is heading, and then the outermost frame (box) acts as a barrier so that the entire frame (with camera) is pushed when the player is traveling in that direction against the frame. In addition, the student has properly drawn the frames of both of these boxes to indiate where the barrier and zones are located in relation to the vessel. 
 
 ## Code Style ##
 
@@ -126,7 +126,7 @@ Overall, the student has shown great effort in following the GDScript code style
 
 ### Best Practices Review ###
 
-Overall, there are not many Best Practices that the student has infracted upon. The code is easy to read and proper coding techniques are well represented across all files. The main thing that I noticed was a lack of comments in some areas that can cause confusion or unclearness for a code reader who is unfamiliar with the project. 
+Overall, there are not many Best Practice infractions that the student has committed. The code is easy to read and proper coding techniques are well represented across all files. The main thing that I noticed was a lack of comments in some areas that can cause confusion or unclearness for a code reader who is unfamiliar with the project. 
 
 #### Best Practices Infractions ####
 
@@ -136,7 +136,7 @@ Overall, there are not many Best Practices that the student has infracted upon. 
 
 #### Best Practices Exemplars ####
 
-* The student has committed many times throughout the submittion of their work which is a best practice
+* The student has committed many times throughout the submittion of their work which is considered a best practice
 
 * [Comments like these](https://github.com/ensemble-ai/exercise-2-camera-control-jaschonherr/blob/007024ead157d3f934a9d8134b9c25f4cfe0477b/Obscura/scripts/camera_controllers/look_ahead_lerp.gd#L28) are very helpful to the reader when viewing the code and are considered best practices
 
