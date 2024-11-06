@@ -1,7 +1,7 @@
-# Code Review for Programming Exercise 1 #
+# Code Review for Programming Exercise 2 #
 ## Description ##
 
-For this assignment, you will be giving feedback on the completeness of Exercise 1.  To do so, we will be giving you a rubric to provide feedback on. For the feedback, please provide positive criticism and suggestions on how to fix segments of code.
+For this assignment, you will be giving feedback on the completeness of Exercise 2.  To do so, we will be giving you a rubric to provide feedback on. For the feedback, please provide positive criticism and suggestions on how to fix segments of code.
 
 You only need to review code modified or created by the student you are reviewing. You do not have to review the code and project files that were given out by the instructor.
 
@@ -20,8 +20,8 @@ If you are in the rare situation where there are two peer-reviewers on a single 
 
 ## Peer-reviewer Information
 
-* *name:* [your name here] 
-* *email:* [your @ucdavis.edu email address here]
+* *name:* [Maxim Saschin] 
+* *email:* [mnsaschin@ucdavis.edu]
 
 ### Description ###
 
@@ -47,14 +47,14 @@ The following are the criteria by which you should assess your peer's solution o
 
 ### Stage 1 ###
 
-- [ ] Perfect
+- [x] Perfect
 - [ ] Great
-- [x] Good
+- [ ] Good
 - [ ] Satisfactory
 - [ ] Unsatisfactory
 
-#### Justification ##### 
-Write Justification here.
+#### Justification #####
+The position lock camera works fully as expected. The camera locks onto the vessel at the center of the screen and stays in this position while the vessel moves. The student has also properly added a cross that shows that the camera locks onto the vessel. 
 
 ### Stage 2 ###
 
@@ -65,29 +65,40 @@ Write Justification here.
 - [ ] Unsatisfactory
 
 #### Justification ##### 
-Write Justification here.
+The autoscrolling camera works mostly as expected, however there is a slight major and minor flaw. Major flaw: The camera is moving the vessel along within it's frame. However, as stated in the project description: "If the player is lagging behind and is touching the left edge of the box, the player should be pushed forward by that box edge." This means that the player should have to move in the rightward direction in order to stay ahead or keep up with the camera frame. The current implementation on the other hand, pushes the entire vessel, never allowing it to lag behind or push the vessel. Minor flaw: When pressing 'f' input to remove the outline border of the frame, the entire speed of the frame (camera) and vessel seems to increase to a super high velocity with the camera moving quickly in the rightward direction.
 
 ### Stage 3 ###
 
-- [ ] Perfect
-- [ ] Great
-- [x] Good
-- [ ] Satisfactory
-- [ ] Unsatisfactory
-
-#### justification ##### 
-Write justification here.
-
-### Stage 4 ###
-
-- [ ] Perfect
+- [x] Perfect
 - [ ] Great
 - [ ] Good
 - [ ] Satisfactory
 - [ ] Unsatisfactory
 
 #### justification ##### 
-Write justification here.
+The position lock and lerp smoothing camera works entirely as expected. The player is able to move the vessel in a direction, and the camera catches up to the vessel at a smooth and consistent rate, not allowing the vessel to move out of the leash range. The student also correctly implemented a cross at the center of the screen to indicate that the camera is moving behind (slower) than the player/vessel. 
+
+### Stage 4 ###
+
+- [x] Perfect
+- [ ] Great
+- [ ] Good
+- [ ] Satisfactory
+- [ ] Unsatisfactory
+
+#### justification ##### 
+The lerp smoothing target focus (ahead) camera works entirely as expected. The player is able to press an input in a direction, and the camera moves in that direction, ahead of the vessel at a quicker rate and consistently stays in front of the vessel until the input is disengaged. The camera also does not move too far ahead of the vessel (outside of leash range). The student also correctly implemented a cross at the center of the screen to indicate that the camera is moving ahead (faster) than the player/vessel. 
+
+### Stage 5 ###
+
+- [x] Perfect
+- [ ] Great
+- [ ] Good
+- [ ] Satisfactory
+- [ ] Unsatisfactory
+
+#### justification ##### 
+The 4-way speedup push zone camera has been fully implemented with no noticable flaws. The player can move freely within the inner box, when in between the inner and outer frame the speed ratio is applied to the camera logic to slightly move the camera in the direction the player is heading, and then the outermost frame (box) acts as a barrier so that the entire frame is pushed when the player is traveling in that direction againt the frame. 
 
 ## Code Style ##
 
