@@ -129,6 +129,12 @@ Here is another example as well.
 
 * The structure used for setting up the [mesh_instance, immediate_mesh, and material in draw_logic](https://github.com/ensemble-ai/exercise-2-camera-control-jaschonherr/blob/007024ead157d3f934a9d8134b9c25f4cfe0477b/Obscura/scripts/camera_controllers/position_lock.gd#L21) is well-organized and consistently applied across different classes, making it easy to understand the flow.
 
+* [Correct and consistent use of indentations](https://github.com/ensemble-ai/exercise-2-camera-control-jaschonherr/blob/06e9662b4b5704a7cfed0b73c78b96b5a085776e/Obscura/scripts/camera_controllers/position_lock_lerp.gd#L27) within if-else statments and functions
+
+* [Proper declaration and use of constant variables](https://github.com/ensemble-ai/exercise-2-camera-control-jaschonherr/blob/06e9662b4b5704a7cfed0b73c78b96b5a085776e/Obscura/scripts/camera_controllers/position_lock_lerp.gd#L4)
+
+* Correct declaration and naming for virtual function [_timer](https://github.com/ensemble-ai/exercise-2-camera-control-jaschonherr/blob/06e9662b4b5704a7cfed0b73c78b96b5a085776e/Obscura/scripts/camera_controllers/look_ahead_lerp.gd#L11)
+
 ## Best Practices ##
 
 ### Description ###
@@ -148,6 +154,8 @@ Overall, there are not many Best Practices that the student has infracted upon. 
 #### Best Practices Infractions ####
 
 * [Lack of comments for complex sections](https://github.com/ensemble-ai/exercise-2-camera-control-jaschonherr/blob/007024ead157d3f934a9d8134b9c25f4cfe0477b/Obscura/scripts/camera_controllers/look_ahead_lerp.gd#L36) - The code could benefit from more comments, especially for complex calculations in the _process functions. Adding comments in these areas can clarify the calculations for the boundaries and speeds.
+
+* I would suggest adding a line of space before [comments like these](https://github.com/ensemble-ai/exercise-2-camera-control-jaschonherr/blob/06e9662b4b5704a7cfed0b73c78b96b5a085776e/Obscura/scripts/camera_controllers/look_ahead_lerp.gd#L35) so that the reader can easily distiguish which line of the code the comment is applying to. 
 
 #### Best Practices Exemplars ####
 
