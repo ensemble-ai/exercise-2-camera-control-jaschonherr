@@ -118,9 +118,9 @@ Overall, the student has shown great effort in following the GDScript code style
 
 * [Correct and consistent use of indentations](https://github.com/ensemble-ai/exercise-2-camera-control-jaschonherr/blob/06e9662b4b5704a7cfed0b73c78b96b5a085776e/Obscura/scripts/camera_controllers/position_lock_lerp.gd#L27) within if-else statments and functions
 
-* [Proper declaration and use of constant variables](https://github.com/ensemble-ai/exercise-2-camera-control-jaschonherr/blob/06e9662b4b5704a7cfed0b73c78b96b5a085776e/Obscura/scripts/camera_controllers/position_lock_lerp.gd#L4)
+* [Proper declaration and use of constant variables](https://github.com/ensemble-ai/exercise-2-camera-control-jaschonherr/blob/06e9662b4b5704a7cfed0b73c78b96b5a085776e/Obscura/scripts/camera_controllers/position_lock_lerp.gd#L4) - the student has declared the constant variable at the top of the file and properly used the "SCREAMING_SNAKE_CASE" naming format. 
 
-* Correct declaration and naming for virtual function [_timer](https://github.com/ensemble-ai/exercise-2-camera-control-jaschonherr/blob/06e9662b4b5704a7cfed0b73c78b96b5a085776e/Obscura/scripts/camera_controllers/look_ahead_lerp.gd#L11)
+* Correct declaration and naming for virtual function [_timer](https://github.com/ensemble-ai/exercise-2-camera-control-jaschonherr/blob/06e9662b4b5704a7cfed0b73c78b96b5a085776e/Obscura/scripts/camera_controllers/look_ahead_lerp.gd#L11) - used the correct naming format and declared in the proper location (top of file). 
 
 ## Best Practices ##
 
